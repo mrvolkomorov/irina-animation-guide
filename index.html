@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Раздатка №2 — Анимация макета: от готового кадра к видео за 10 минут | ИИ в дизайне</title>
+<style>
+:root{--ink:#1a2330;--muted:#5b6673;--line:#dfe4ea;--bg:#f7f8fa;--card:#fff;--accent:#5b2c8a;--accent2:#0f7b6c;--warn:#b8860b;--warnbg:#fff8e6;--free:#0f7b6c;--freebg:#e6f5f2;--new:#b03030;--pay:#8a6100}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;color:var(--ink);background:var(--bg);line-height:1.6;-webkit-font-smoothing:antialiased}
+header{background:var(--accent);color:#fff;padding:32px 24px}
+header .wrap{max-width:1080px;margin:0 auto}
+header .badge{display:inline-block;background:rgba(255,255,255,.16);border:1px solid rgba(255,255,255,.3);padding:4px 12px;border-radius:20px;font-size:13px;font-weight:600}
+header h1{font-size:29px;line-height:1.25;margin:14px 0 10px;font-weight:700}
+header p{font-size:16px;opacity:.92;max-width:780px}
+header .meta{font-size:14px;opacity:.8;margin-top:14px}
+.wrap{max-width:1080px;margin:0 auto;padding:0 24px}
+main{padding:32px 0 56px}
+section{margin-bottom:44px}
+h2{font-size:22px;margin-bottom:8px;font-weight:700}
+h2 + .lead{color:var(--muted);font-size:15px;margin-bottom:18px}
+h3{font-size:17px;margin:24px 0 10px;font-weight:650}
+h4{font-size:15.5px;margin:0 0 6px;color:var(--accent)}
+.card{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:20px 22px;margin-bottom:16px}
+.alert{border-left:4px solid var(--warn);background:var(--warnbg);border-radius:0 8px 8px 0}
+.alert strong{color:#8a6100}
+.good{border-left:4px solid var(--accent2);background:var(--freebg);border-radius:0 8px 8px 0}
+.good strong{color:#0b5f53}
+.free-badge{display:inline-block;background:var(--freebg);color:var(--free);font-size:11.5px;font-weight:700;padding:3px 9px;border-radius:4px;border:1px solid #bfe3dc;white-space:nowrap}
+.pay-badge{display:inline-block;background:#fdf3dd;color:var(--pay);font-size:11.5px;font-weight:700;padding:3px 9px;border-radius:4px;border:1px solid #ecdcae;white-space:nowrap}
+.new-badge{display:inline-block;background:#fdecec;color:var(--new);font-size:11.5px;font-weight:700;padding:3px 9px;border-radius:4px;border:1px solid #f3c9c9;white-space:nowrap}
+table{width:100%;border-collapse:collapse;background:var(--card);border:1px solid var(--line);border-radius:10px;overflow:hidden;font-size:14.5px}
+th{background:#eef1f5;text-align:left;padding:12px 14px;font-weight:650;font-size:13px;color:#3d4753;border-bottom:2px solid var(--line)}
+td{padding:12px 14px;border-bottom:1px solid #eceff2;vertical-align:top}
+tr:last-child td{border-bottom:none}
+tr.pick{background:#f4faf8}
+.mname{font-weight:650}
+.mid{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:12px;color:var(--muted);word-break:break-all;margin-top:2px}
+.price{font-variant-numeric:tabular-nums;font-weight:600;white-space:nowrap}
+.tblwrap{overflow-x:auto;border-radius:10px;border:1px solid var(--line);background:var(--card);border-collapse:separate}
+.tblwrap table{border:none}
+ul,ol{margin:10px 0 10px 22px}
+li{margin-bottom:7px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px;margin:16px 0}
+.mini{background:var(--card);border:1px solid var(--line);border-radius:9px;padding:16px 18px}
+.mini p{font-size:14px;color:var(--muted)}
+.prompt{background:#f4f6f8;border:1px solid #e2e6eb;border-left:3px solid var(--accent);border-radius:0 7px 7px 0;padding:13px 16px;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:13.5px;color:#2b3442;margin:12px 0;white-space:pre-wrap;line-height:1.55}
+.prompt-lbl{font-size:13px;font-weight:650;color:var(--accent);margin:16px 0 4px}
+a{color:var(--accent)}
+.check li{list-style:none;position:relative;padding-left:28px;margin-bottom:9px}
+.check li:before{content:"\25A1";position:absolute;left:0;top:-1px;font-size:17px;color:var(--accent2);font-weight:700}
+.steps{counter-reset:s;list-style:none;margin:16px 0;padding:0}
+.steps li{counter-increment:s;position:relative;padding-left:44px;margin-bottom:14px}
+.steps li:before{content:counter(s);position:absolute;left:0;top:0;width:30px;height:30px;border-radius:50%;background:var(--accent);color:#fff;font-size:15px;font-weight:700;display:flex;align-items:center;justify-content:center}
+footer{background:#1f2732;color:#9aa5b1;padding:26px 24px;font-size:13.5px}
+footer .wrap{max-width:1080px;margin:0 auto}
+footer a{color:#c9a6e8}
+@media(max-width:640px){header h1{font-size:23px}main{padding:24px 0 40px}th,td{padding:10px 11px;font-size:13.5px}.steps li{padding-left:38px}}
+</style>
+</head>
+<body>
+<header><div class="wrap">
+<span class="badge">Раздаточный материал №2</span>
+<h1>Анимация макета: от готового кадра к видео за 10 минут</h1>
+<p>Почему видео получается плохим, как это лечится и в каком порядке работать с ИИ-видео. С промптами, таблицей ошибок и ценами на 26 октября 2026.</p>
+<div class="meta">Занятие 3 · 26 октября 2026 · тарифы и цены проверены 26 октября 2026</div>
+</div></header>
+<main><div class="wrap">
+
+<section>
+<h2>Главная мысль</h2>
+<p class="lead">ИИ не анимирует макет — он заново снимает то, что видит. Чем чище исходный кадр и чем точнее описано движение, тем меньше правок. 80% плохих результатов лечится на этапе подготовки кадра, а не подбором промпта.</p>
+</section>
+
+<section>
+<h2>1. Почему ИИ-анимация ломается</h2>
+<div class="tblwrap"><table>
+<thead><tr><th>Причина</th><th>Что происходит</th><th>Как лечить</th></tr></thead>
+<tbody>
+<tr><td>Модель дорисовывает</td><td>Движение — это генерация, а не перенос. Всё, чего нет в кадре, она придумывает: лишние пальцы, поплывшие буквы, «выросший» фонарь</td><td>Давать чистый кадр без лишнего и описывать движение узко</td></tr>
+<tr><td>Текст внутри картинки</td><td>Надписи в ролике разваливаются почти всегда — модель перерисовывает их покадрово</td><td>Двигать картинку <strong>без текста</strong>, надписи добавлять в монтаже. Один слой текста поверх ролика</td></tr>
+<tr><td>Грязный исходник</td><td>Смазанная картинка, чужие объекты, неверные пропорции — всё это наследуется в ролик</td><td>Сначала редактирование, потом анимация. Кадр готовится отдельным шагом</td></tr>
+<tr><td>Слишком много движения</td><td>За один проход модель пытается снять сцену целиком, и результат «плывёт»</td><td>Одно движение на один ролик. Камера — отдельно, объект — отдельно</td></tr>
+<tr><td>Не задан формат</td><td>Ролик выходит в чужом соотношении сторон и не встаёт в макет</td><td>Формат задаётся до генерации, под площадку публикации</td></tr>
+</tbody></table></div>
+</section>
+
+<section>
+<h2>2. Порядок работы: 5 шагов</h2>
+<ol class="steps">
+<li><strong>Подготовить кадр.</strong> Расширить до нужных пропорций, убрать лишнее, увеличить разрешение. Дальше идём с готового файла, а не из редактора.</li>
+<li><strong>Убрать текст.</strong> Сделать копию кадра без надписей. Текст вернуть в монтаже — это снимает самую частую поломку.</li>
+<li><strong>Написать движение.</strong> Одно предложение: что двигается и как. Не сценарий, а одна фраза.</li>
+<li><strong>Сгенерировать.</strong> Выбрать модель, задать соотношение сторон и длительность, загрузить кадр как первый кадр.</li>
+<li><strong>Проверить и починить.</strong> Сравнить с исходником: форма не поехала, объект на месте, нет лишних деталей. Не понравилось — править кадр или формулировку, а не жать «ещё раз».</li>
+</ol>
+
+<p class="prompt-lbl">Формулировка движения для ролика:</p>
+<div class="prompt">Статичная камера, без зума и панорамы.
+Медленное движение [объект]: [что именно делает].
+Свет и цвет остаются как в исходном кадре.
+Никаких новых объектов в кадре.</div>
+
+<p class="prompt-lbl">Если нужен лёгкий параллакс (объект «оживает»):</p>
+<div class="prompt">Очень медленный параллакс: камера едва заметно
+движется вперёд, объект остаётся в центре кадра.
+Движение минимальное, без резких смен плана.</div>
+
+<p class="prompt-lbl">Если нужно движение объекта на прозрачном фоне:</p>
+<div class="prompt">Объект [что] слегка поворачивается вправо
+и возвращается в исходное положение.
+Фон неподвижен, освещение не меняется.</div>
+</section>
+
+<section>
+<h2>3. Каталог инструментов и цены</h2>
+<p class="lead">Цены проверены 26 октября 2026 года и меняются. У всех сервисов ниже оплата идёт за объём — счёт считается по факту генерации, не по подписке «на месяц вперёд».</p>
+<div class="tblwrap"><table>
+<thead><tr><th>Инструмент</th><th>Как считается</th><th>Цена</th><th>Когда брать</th></tr></thead>
+<tbody>
+<tr class="pick"><td class="mname">MiniMax H3<div class="mid">agent.minimax.io</div></td><td>Покадрово, за секунду видео</td><td class="price">768p — $0,08/сек<br>2K — $0,13/сек<br>облегчённая — $0,04/сек</td><td>Уже есть доступ, отдельная подписка не нужна. Первые 5 кадров в задаче — бесплатно</td></tr>
+<tr class="pick"><td class="mname">Hailuo<div class="mid">в кабинете MiniMax</div></td><td>За готовый ролик</td><td class="price">6 сек 768p — $0,19–$0,28</td><td>Если нужен ролик под 10 секунд без настройки соотношения сторон</td></tr>
+<tr><td class="mname">Kling</td><td>Кредиты, 100 кредитов — от $0,81 до $1,06</td><td class="price">Standard — от $6,99/мес<br>Pro — от $25,99/мес<br>при годовой оплате</td><td>Когда нужна стабильность картинки и разрешение до 4K</td></tr>
+<tr><td class="mname">Runway Gen-4.5</td><td>12 кредитов за секунду</td><td class="price">Standard $15/мес — 625 кредитов<br>Pro $35/мес — 2250 кредитов</td><td>Профессиональный монтаж, работа с проектами и звуком</td></tr>
+<tr><td class="mname">Pika</td><td>За генерацию, 122 кредита за 5 секунд</td><td class="price">Free — без коммерческих прав<br>Starter $10/мес — 900 кредитов<br>Creator $35/мес — 3150 кредитов</td><td>Быстрые черновики роликов, есть готовые модели Seedance и Wan</td></tr>
+<tr><td class="mname">Luma</td><td>25 кредитов за секунду</td><td class="price">от $30/мес</td><td>Дороже остальных при небольшом объёме — имеет смысл при потоковой работе</td></tr>
+</tbody></table></div>
+
+<div class="card good">
+<strong>С чего начать при бюджете 1–2 подписки по $15–20.</strong> Видео — не первая покупка. Сначала закрывается инструмент для редактирования (Recraft Basic $12/мес — маска, вектор, экспорт в PSD, коммерческие права), а видео идёт через уже оплаченный MiniMax: 5-секундный ролик в 768p стоит $0,40. Вторую подписку стоит брать только после того, как отработан сам процесс.
+</div>
+
+<div class="card alert">
+<strong>О бесплатных тарифах.</strong> У Pika тариф Free даёт генерации, но <strong>без коммерческой лицензии</strong> — такой ролик нельзя отдавать клиенту. У Recraft на бесплатном тарифе изображения публичны и принадлежат сервису. У Genspark бесплатный тариф даёт 100 кредитов в день, но ежедневное пополнение прекращается, когда исчерпана пожизненная норма бесплатных кредитов — точную величину сервис не публикует. Для проверки подхода бесплатного режима хватает, для клиентского потока — нет.
+</div>
+</section>
+
+<section>
+<h2>4. Разбор типовых ошибок</h2>
+<div class="tblwrap"><table>
+<thead><tr><th>Что получилось</th><th>Почему</th><th>Что сделать</th></tr></thead>
+<tbody>
+<tr><td>Камера «уехала», кадр поехал в сторону</td><td>Не задана камера, модель интерпретирует сцену сама</td><td>Добавить в промпт: «статичная камера, без зума, без панорамы»</td></tr>
+<tr><td>Надписи в ролике рассыпались</td><td>Текст был в исходном кадре</td><td>Убрать текст из кадра до генерации, вернуть в монтаже</td></tr>
+<tr><td>Лицо или пальцы поплыли</td><td>Слабое место генеративных моделей, анимация усиливает артефакты</td><td>Не анимировать кадр с людьми крупно. Лицо в кадре — риск для любого ролика</td></tr>
+<tr><td>Стиль кадра «поплыл», картинка стала другой</td><td>Модель переосмыслила сцену вместо того, чтобы её снять</td><td>Добавить «цвет, свет и стиль как в исходном кадре». Не менять формулировку стиля</td></tr>
+<tr><td>Ролик слишком короткий</td><td>Задана минимальная длительность</td><td>Выставить 5–10 секунд. Короткие ролики в рекламе работают лучше длинных</td></tr>
+<tr><td>Формат не тот</td><td>Формат не задан, подставился по умолчанию</td><td>Задать соотношение сторон до генерации: 9:16 — сторис и Reels, 16:9 — YouTube и ТВ</td></tr>
+<tr><td>Две попытки подряд — и обе плохие</td><td>Меняется формулировка, а не кадр</td><td>Остановиться, починить исходный кадр, попробовать в третий раз с ним</td></tr>
+<tr><td>Ролик хороший, но не подходит макету</td><td>Формат и кадр готовились независимо</td><td>Анимировать уже адаптированный под площадку кадр, а не исходник</td></tr>
+</tbody></table></div>
+</section>
+
+<section>
+<h2>5. Проверка ролика — чек-лист</h2>
+<div class="grid">
+<div class="card"><h4 style="margin-top:0">Ролик технически годный</h4>
+<ul class="check">
+<li>Формат совпадает с площадкой публикации</li>
+<li>Длительность в пределах задачи</li>
+<li>Движение одно и понятное</li>
+<li>Камера не плавает, кадр стабилен</li>
+<li>Нет лишних объектов и «нарисованных» деталей</li>
+<li>Цвет и свет не изменились</li>
+</ul></div>
+<div class="card"><h4 style="margin-top:0">Готово к отправке</h4>
+<ul class="check">
+<li>Текст наложен в монтаже, а не внутри картинки</li>
+<li>Есть оригинальный кадр и исходник макета</li>
+<li>Лицензия сервиса допускает коммерческое использование</li>
+<li>В ролике нет узнаваемых лиц без согласия</li>
+<li>Файл в том качестве, которое требует площадка</li>
+</ul></div>
+</div>
+</section>
+
+</div></main>
+<footer><div class="wrap">
+Раздаточный материал №2 к занятию 3 «Редактирование + анимация + безопасность + финальный конвейер» · 26 октября 2026<br>
+Источники: <a href="https://platform.minimax.io/docs/pricing/overview" target="_blank">platform.minimax.io</a> · <a href="https://kling.ai/app/membership/membership-plan" target="_blank">kling.ai</a> · <a href="https://runwayml.com/pricing" target="_blank">runwayml.com</a> · <a href="https://pika.art/pricing" target="_blank">pika.art</a> · <a href="https://lumalabs.ai/pricing" target="_blank">lumalabs.ai</a> — цены проверены 26 октября 2026 года<br>
+Редактирование — в <a href="https://mrvolkomorov.github.io/irina-editing-guide/" target="_blank">раздатке №1</a>
+</div></footer>
+</body></html>
